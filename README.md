@@ -32,7 +32,7 @@ To install the necessary dependencies, you can run: sudo apt-get install gdb pyt
 --------------------------------------Setup and Running the Experiment--------------------------------------
 
 1. Clone the repository:
-git clone https://github.com/wwww-sudo/111.git
+git clone https://github.com/wwww-sudo/TRACE.git
 cd TRACE
 
 2. Configure the experiment:
