@@ -2,6 +2,7 @@ TRACE: Trusted Return-Path Authentication via Context and Lightweight Encryption
 TRACE is a lightweight control flow integrity (CFI) mechanism designed to defend against Return-Oriented Programming (ROP) attacks in embedded systems. TRACE dynamically binds return addresses to the unique function call path, making it difficult for attackers to hijack control flow by exploiting buffer overflows and other memory corruption vulnerabilities. This project uses the PRESENT cipher for lightweight encryption of return addresses and provides a defense mechanism that can be easily integrated with embedded applications.
 
 --------------------------------------Project Structure--------------------------------------
+
 The project contains the following components:
 
 libmodbus-2.9.3/: This folder contains the Modbus protocol stack used for testing the vulnerabilities in embedded systems.
@@ -21,6 +22,7 @@ exp.py: The exploit script used to perform the attack.
 README.md: This file, containing the project documentation and instructions.
 
 --------------------------------------Requirements--------------------------------------
+
 GDB: GNU Debugger, used for running the target program and injecting the defense logic.
 
 Python 3: Required for running the automation and attack scripts.
@@ -28,6 +30,7 @@ Python 3: Required for running the automation and attack scripts.
 To install the necessary dependencies, you can run: sudo apt-get install gdb python3
 
 --------------------------------------Setup and Running the Experiment--------------------------------------
+
 1. Clone the repository:
 git clone https://github.com/your_username/TRACE.git
 cd TRACE
@@ -48,6 +51,7 @@ This will:
 4.If the attack is successful (i.e., control flow is hijacked), the experiment will execute shellcode.
 
 --------------------------------------Attack Reproduction--------------------------------------
+
 To reproduce the attack, the exploit script (exp.py) needs to be configured with the correct return address that points to the shellcode. Since the return address is highly dependent on the specific memory layout of the target system, you must replace the return address in the exp.py script with the address of the shellcode in your environment.
 Modifying the Return Address in exp.py：
 1.Identify the shellcode address:The shellcode address can be obtained by inspecting the memory layout of the target program. This is typically done by using GDB to inspect the memory.
@@ -55,6 +59,7 @@ Modifying the Return Address in exp.py：
 3.Run the attack:python3 exp.py
 
 --------------------------------------Important Notes--------------------------------------
+
 Ensure that your shellcode is properly placed in memory and accessible at the specified address. This may require debugging and analysis using GDB.
 
 The exact method for obtaining the return address will depend on the target system, so memory inspection tools like GDB are essential.
@@ -62,6 +67,7 @@ The exact method for obtaining the return address will depend on the target syst
 The address you use must be aligned with the specific layout of the program being tested, including any stack adjustments or randomization mechanisms in place.
 
 --------------------------------------How the Defense Works--------------------------------------
+
 The TRACE defense mechanism uses a dynamic path-sensitive approach to bind the return address to a unique function call path. This is achieved by:
 
 1.Path state encoding: The current execution path is encoded using a state vector that is updated during function calls.
@@ -71,6 +77,7 @@ The TRACE defense mechanism uses a dynamic path-sensitive approach to bind the r
 If the return address does not match the expected value, the program execution is aborted, preventing the control flow hijacking.
 
 --------------------------------------License--------------------------------------
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 
